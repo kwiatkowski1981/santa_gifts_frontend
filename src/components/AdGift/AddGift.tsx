@@ -41,6 +41,7 @@ export const AddGift = () => {
         return <div>
             <p><strong>{resultInfo}</strong></p>
             <button onClick={() => setResultInfo(null)}>Add another one</button>
+
         </div>
     }
 
