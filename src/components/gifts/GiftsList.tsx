@@ -1,31 +1,29 @@
 import React, {useEffect, useState} from 'react';
-import {GiftEntity} from "./gifts";
+import {GiftEntity} from "types";
 import { GiftsTable } from './GiftsTable';
+import {Spinner} from "../common/spinner/Spinner";
 
 export const GiftsList = () => {
-    const [giftsList, setGiftsList] = useState<GiftEntity[] | null>(null);
 
-    const uri: string = `http://localhost:3001/gift`;
+    const [giftsList, setGiftsList] = useState<GiftEntity[] | null>(null);
+    const refreshGiftsList = async () => {
+        setGiftsList(null);
+        const res = await fetch(`http://localhost:3001/gift`);
+        const data = await res.json();
+        setGiftsList(data.giftsList)
+    };
 
     useEffect(() => {
-        (async () => {
-            const res = await fetch(uri);
-            const data = await res.json();
-            setGiftsList(data.giftsList)
-
-        })();
+        refreshGiftsList();
     }, []);
 
-
-
     if (giftsList === null) {
-        return <p>Loading...</p>
+        return <Spinner/>;
     }
 
     return <>
     <h1>Gifts</h1>
-        <GiftsTable gifts={giftsList}  />
-
+        <GiftsTable gifts={giftsList}  onGiftsChange={refreshGiftsList}/>
     </>;
 
 }

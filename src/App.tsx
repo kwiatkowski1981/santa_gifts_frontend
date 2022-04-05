@@ -1,11 +1,7 @@
 import React from 'react';
 import './App.css';
-import {GiftsList} from "./components/gifts/GiftsList";
+import {GiftsView} from "./views/GiftsView";
 
 export function App() {
-  return (
-      <>
-          <GiftsList />
-      </>
-  )
+    return <GiftsView />
 }
