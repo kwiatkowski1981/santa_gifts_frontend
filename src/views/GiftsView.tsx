@@ -1,12 +1,11 @@
 import React from 'react';
 import {GiftsList} from "../components/gifts/GiftsList";
-import {AddGift} from "../components/AdGift/AddGift";
-import {Link} from "react-router-dom";
+import {AddGift} from "../components/AddGift/AddGift";
+
 
 export const GiftsView = () => (
     <>
     <GiftsList />
     <AddGift />
-
     </>
 )
